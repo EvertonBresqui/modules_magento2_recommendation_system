@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Exportação para o Sistema de Recomendação</title>
+        <script src="Recommendation_System::js/export.js" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Recommendation\System\Block\Adminhtml\Export"
+                   name="recommendation.export"
+                   template="Recommendation_System::export.phtml" />
+        </referenceContainer>
+    </body>
+</page>

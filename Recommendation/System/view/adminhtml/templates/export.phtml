@@ -1,0 +1,46 @@
+<?php 
+//['customer_entity', 'catalog_product_entity']
+$tables = $block->getTables();
+//(int) qtyPerCicle
+$qtyPerCicle = $block->getQtyPerCicle();
+//URL
+$url = $block->getUrlExport();
+
+$tablesString = json_encode($tables);
+?>
+<form>
+    <input type="hidden" id="tables" value='<?=$tablesString?>'/>
+    <input type="hidden" id="qty_per_cicle" value='<?=$qtyPerCicle?>'/>
+    <input type="hidden" id="url" value='<?=$url?>'/>
+    <?php echo $this->getBlockHtml('formkey')?>
+    <div>
+        <h4>Tabelas cadastradas para exportação:</h4>
+        <div><ul><?php
+            if(count($tables) > 0){
+                //Percorre as tabelas
+                foreach($tables as $table => $values){
+                    echo '<li>'.$table. ' = (<span id="qty_exported_table_'.$table.'">0</span>)/('.$values['qty_total'].')</li>';
+                    //Percorre os atributos
+                    echo '<ul>';
+                    foreach($values['attributes'] as $attribute){
+                        echo '<li>'.$attribute.'</li>';
+                    }
+                    echo '</ul>';
+                }
+            }
+            else{
+                echo '<li>Informe alguma tabela para exportação, 
+                    em "STORES -> Settings -> Configuration ->
+                    RECOMMENDATION -> System"</li>';
+            }
+        ?></ul></div>
+    </div>
+    <div>
+        <input type="button" id="btn_export" value="Exportar"/><span id="message"></span>
+    </div>
+    <br/>
+    <div id="links"></div>
+    <div>Observação: A exportação dos registros serão feitos de todas as lojas, 
+    o filtro de store_id deverá ser aplicado na API do Sistema de Recomendação,
+    no qual deve ser adicionado o atributo store_id nas configurações para a tabela que tem a coluna.</div>
+</form>

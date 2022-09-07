@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="recommendation" translate="label" sortOrder="1000">
+            <label>Recommendation</label>
+        </tab>
+        <section id="recommendation_als" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Als</label>
+            <tab>recommendation</tab>
+            <resource>Recommendation_Als::recommendation_als_config</resource>
+            <!--Configurações gerais-->
+            <group id="settings_general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações Gerais</label>
+                
+                <field id="enable" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Habilitar Algoritmo</label> 
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="schedule" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ciclo de CRON</label>
+                    <comment>Informe de quanto em quanto tempo o cron será executado (0 3 * * *).</comment>
+                </field>
+                <field id="qty_registrys_cicle" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Número de recomendações por ciclo</label>
+                    <comment>Informe a quantidade de registros por ciclo de cron</comment>
+                </field>
+                <field id="template_id" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe o template de email</label>
+                    <source_model>Recommendation\Als\Model\Config\Source\Templates</source_model>
+                </field>
+                <field id="name_sale" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe o nome da loja</label>
+                </field>
+                <field id="email_sale" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe o email da loja</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

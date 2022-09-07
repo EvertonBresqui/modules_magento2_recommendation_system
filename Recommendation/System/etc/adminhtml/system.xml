@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="recommendation" translate="label" sortOrder="1000">
+            <label>Recommendation</label>
+        </tab>
+        <section id="recommendation_system" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>System</label>
+            <tab>recommendation</tab>
+            <resource>Recommendation_System::recommendation_system_config</resource>
+            <!--Configurações gerais-->
+            <group id="settings_general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações Gerais</label>
+                <field id="name_file_log" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Nome do arquivo de log</label>
+                    <comment>Informe o nome do arquivo de log.</comment>
+                </field>
+            </group>
+            <!--Configurações de cron-->
+            <group id="settings_cron" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações do CRON</label>
+                <field id="enable_cron" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Habilitar cron de exportação</label> 
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="schedule" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ciclo de CRON</label>
+                    <comment>Informe de quanto em quanto tempo o cron será executado (0 3 * * *).</comment>
+                </field>
+            </group>
+            <!--Configurações de exportação-->
+            <group id="settings_export" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações de exportação</label>
+                <field id="type_export" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe o tipo da exportação</label> 
+                    <source_model>Recommendation\System\Model\Config\Source\TypeExport</source_model>
+                </field>
+                <field id="host" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Domínio</label>
+                    <comment>Informe o domínio da API do sistema de recomendação</comment>
+                    <depends>
+                        <field id="recommendation_system/settings_export/type_export">0</field>
+                    </depends>
+                </field>
+                <field id="user" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Usuário</label> 
+                    <comment>Informe o usuário criado na API do sistema de recomendação</comment>       
+                    <depends>
+                        <field id="recommendation_system/settings_export/type_export">0</field>
+                    </depends>
+                </field> 
+                <field id="pass" translate="label" type="password" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Senha</label>  
+                    <comment>Informe a senha do usuário criado na API do sistema de recomendação</comment>
+                    <depends>
+                        <field id="recommendation_system/settings_export/type_export">0</field>
+                    </depends>
+                </field>
+                <field id="sale_group" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID do Grupo</label>  
+                    <comment>Informe o Id do grupo da API do sistema de recomendação</comment>
+                    <depends>
+                        <field id="recommendation_system/settings_export/type_export">0</field>
+                    </depends>
+                </field>
+                <field id="increment_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID da Loja</label>  
+                    <comment>Informe o Id da Loja API do sistema de recomendação</comment>
+                    <depends>
+                        <field id="recommendation_system/settings_export/type_export">0</field>
+                    </depends>
+                </field>
+            </group>
+            <!--Configurações da estrutura dos dados-->
+            <group id="settings_data" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações da estrutura dos dados</label>
+                <field id="tables" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe os nomes das tabelas e os atributos</label>   
+                    <comment>Informe o nomes das tabelas separados por quebra de linha e 
+                    os nomes dos atributos separando-os por vírgula. Exemplo: catalog_product_entity=entity_id,sku </comment>
+                </field> 
+                <field id="table_incator_order_by" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Informe o indicador para exportação.</label>   
+                    <comment>Informe os nome da coluna das tabelas separadas por quebra de linha. Exemplo: catalog_product_entity=entity_id</comment>
+                </field>
+                <field id="qty_registers_cicle" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantidade de registros por ciclo de exportação</label>   
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

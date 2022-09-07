@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Recommendation_System:etc/crontab.xsd">
+    <group id="cron_recommendation_export">
+        <job name="recommendation_system_cronjob_export_sync" instance="Recommendation\System\Cron\Export" method="execute">
+            <config_path>recommendation_system/settings_cron/schedule</config_path>
+        </job>
+    </group>
+</config>

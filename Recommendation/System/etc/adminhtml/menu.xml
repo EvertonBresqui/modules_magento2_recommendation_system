@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- START: node master -->                
+        <add id="Recommendation_System::recommendation"
+             title="Recommendation System"
+             module="Recommendation_System"
+             sortOrder="200"
+             resource="Magento_Backend::content"
+            />
+        <!-- END:   node master -->     
+        <!-- START: new sub node -->                
+        <add id="Recommendation_System::export"
+             title="Export"
+             module="Recommendation_System"
+             sortOrder="5"
+             resource="Magento_Backend::content"
+
+             parent="Recommendation_System::recommendation"
+             action="recommendation/export/index"
+            />
+    </menu>
+</config>
